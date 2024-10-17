@@ -1,8 +1,8 @@
 # TCProxy
-A lightweight dual stack TCP proxy written in go
+A lightweight dual stack TCP reverse proxy written in go
 
 ## Capabilities
-* Proxy all kinds of TCP based protocols
+* Reverse proxy all kinds of TCP based protocols
     * tested on the following
         * HTTP
         * HTTPS
@@ -15,8 +15,9 @@ A lightweight dual stack TCP proxy written in go
 ## Configuration
 The application looks for a file called settings.yaml in the current working directory.
 ### Config samples
-#### HTTP forwarding to ip
+#### HTTP proxy to ip
 In this example we are listing on port 8080, and forwarding any connection the server is getting to 10.255.255.1:80
+The proxy will always listen on both ipv6 and ipv4 for incomming connections
 ```yaml
 server:
   port: 8080
@@ -25,7 +26,7 @@ target:
   port: 80
 ```
 
-#### HTTPS forwarding with DNS
+#### HTTPS proxy with DNS
 In this example we are acting as a proxy towards a proxmox web management interface. The server will lookup DNS names in the target address field. Note that the proxy is a direct passthough, so if the target server speaks HTTPS then it's passed though directly to the client. The server can't look inside the TLS connection for encrypted data
 ```yaml
 server:
