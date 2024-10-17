@@ -1,10 +1,9 @@
 package main
 
 import (
+	"gopkg.in/yaml.v3"
 	"net"
 	"strconv"
-
-	"gopkg.in/yaml.v3"
 )
 
 type ConfigServer struct {
@@ -29,6 +28,12 @@ func loadConfig(path string) Config {
 
 func (t *ConfigTarget) getTCPAddr() *net.TCPAddr {
 	addr := t.Address + ":" + strconv.Itoa(int(t.Port))
+	TCPAddr, err := net.ResolveTCPAddr("tcp", addr)
+	checkErrFatal(err)
+	return TCPAddr
+}
+func (s *ConfigServer) getTCPAddr() *net.TCPAddr {
+	addr := "[::]:" + strconv.Itoa(int(s.Port))
 	TCPAddr, err := net.ResolveTCPAddr("tcp", addr)
 	checkErrFatal(err)
 	return TCPAddr
