@@ -1,0 +1,5 @@
+server:
+  port: 8080
+target:
+  address: 10.255.255.1
+  port: 80
