@@ -44,3 +44,24 @@ target:
   address: 10.10.10.10
   port: 22
 ```
+
+## How to build
+Make sure your version of go is new enough
+```bash
+go version
+go version go1.22.2 linux/amd64 # You should have 1.22 or newer
+```
+Download the source code using git, and enter the directory
+```
+git clone https://github.com/AndersBallegaard/TCProxy.git
+cd TCProxy
+```
+Run the following build command
+```bash
+go build .
+```
+Run the proxy
+```
+./TCProxy
+```
+
